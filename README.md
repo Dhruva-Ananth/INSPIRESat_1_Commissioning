@@ -15,15 +15,15 @@ These scripts will be repeatedly utilized to commission the satellite and also o
 ## Commissioning Plan
 commission_is1 - A top level script which wraps all the commissioning scripts underneath asking the user whether to proceed to the next stage. This script should also allow starting the commissioning process from anywhere in the middle.
 The commissioning of the spacecraft is divided into 3 phases: 
-Phase – 1:  
+### Phase – 1:  
 1.	Aliveness – safe and phoenix mode. Run the code depending on the spacecraft mode detected in beacon
-Phase – 2: 
+### Phase – 2: 
 2.	Set time – DAXSS time as well as ADCS time. Should take a time stamp of the system time, compensate for UTC and upload in the satellite ADCS
 3.	Playback deployment data (ADCS rolls over in just 3 days)
 4.	Commission ADCS:
 a.	Set ephemeris – A common script which will be used during Orbit operations as well
 b.	Test fine pointing
-Phase – 3: 
+### Phase – 3: 
 5.	Instrument aliveness – DAXSS and CIP both
 6.	Go to science
 7.	Adjust X123 thresholds, change modes of CIP operation
