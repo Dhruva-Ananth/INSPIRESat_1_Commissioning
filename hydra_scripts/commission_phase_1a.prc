@@ -16,7 +16,7 @@
 ; 5. QC, Unnati (IIST)
 ;
 ; OTHER DEPENDENT SCRIPTS:
-; hello_is1.prc
+; hello_is1
 ; Scripts/Commissioning/commission_cdh_tlm_check
 ; Scripts/Commissioning/commission_eps_tlm_check
 ; Scripts/Commissioning/commission_comm_tlm_check
@@ -68,20 +68,24 @@ CHECKOUT:
 ; Decided to keep all parameter checks
 ; Call cdh_tlm_check
 echo Press GO if you want to perfrom CDH tlm checks.
+echo Else GOTO FINISH
 pause
 call Scripts/Commissioning/commission_cdh_tlm_check
 
 echo Press GO if you want to perfrom EPS tlm checks.
+echo Else GOTO FINISH
 pause
 ; Call eps_tlm_check
 call Scripts/Commissioning/commission_eps_tlm_check
 
 echo Press GO if you want to perfrom Comm. tlm checks.
+echo Else GOTO FINISH
 pause
 ; Call comm_tlm_check
 call Scripts/Commissioning/commission_comm_tlm_check
 
 echo Press GO if you want to perfrom ADCS tlm checks.
+echo Else GOTO FINISH
 pause
 ; Call adcs_tlm_check
 call Scripts/Commissioning/commission_adcs_tlm_check
