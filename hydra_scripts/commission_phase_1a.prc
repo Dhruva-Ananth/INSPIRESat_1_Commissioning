@@ -63,6 +63,11 @@ timeout
 	goto FINISH
 endtimeout
 
+; Zero launch delay table parameter to avoid recurring launch delay after spacecraft reset
+echo To reduce launch delay press GO
+pause
+
+call Scripts/Commissioning/commission_reduce_launch_delay
 
 CHECKOUT:
 ; Decided to keep all parameter checks
@@ -89,12 +94,6 @@ echo Else GOTO FINISH
 pause
 ; Call adcs_tlm_check
 call Scripts/Commissioning/commission_adcs_tlm_check
-
-; Zero launch delay table parameter to avoid recurring launch delay after spacecraft reset
-echo To reduce launch delay press GO
-pause
-
-call Scripts/Commissioning/commission_reduce_launch_delay
 
 REDUCE_BEACON_RATE:
 ; Reduce beacon rate to SD card to avoid beacon partition overflow before deployment data download
