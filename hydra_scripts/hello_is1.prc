@@ -11,7 +11,7 @@
 ; OUTLINE:
 ; 1. We wait for a beacon packet update
 ; 2. We command cmd_noop see increment in command count
-; 3. Revert back the beacon rate to 10 seconds, at Zenith!
+
 
 declare cmdCnt dn32l
 declare cmdTry dn32l
