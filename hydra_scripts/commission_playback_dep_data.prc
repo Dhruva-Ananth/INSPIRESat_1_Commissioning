@@ -51,16 +51,16 @@ set waitInterval = 4000
 ; Remember to change to the latest write pointer before shipping to SHAR
 set cmdTry = 0
 set cmdSuccess = 0
-set dwnldBurstSize = 300
+set dwnldBurstSize = 120
 set burstTimeout = 10
-set singleBurstTimeout = 300
+set singleBurstTimeout = 120
 
 
 ; 1. Route beacon and sd_hk packets
 set cmdCnt = beacon_cmd_succ_count + 1
 while beacon_cmd_succ_count < cmdCnt
     set cmdTry = $cmdTry + 1
-    cmd_set_pkt_rate apid SW_STAT rate 3 stream UHF
+    cmd_set_pkt_rate apid SW_STAT rate 5 stream UHF
     wait $waitInterval
 endwhile
 set cmdSuccess = $cmdSuccess + 1
@@ -68,7 +68,7 @@ set cmdSuccess = $cmdSuccess + 1
 set cmdCnt = beacon_cmd_succ_count + 1
 while beacon_cmd_succ_count < cmdCnt
     set cmdTry = $cmdTry + 1
-    cmd_Set_pkt_rate apid SD_HK rate 3 stream UHF
+    cmd_Set_pkt_rate apid SD_HK rate 5 stream UHF
     wait $waitInterval
 endwhile
 set cmdSuccess = $cmdSuccess + 1
@@ -131,7 +131,7 @@ pause
 
 
 VERIFY:
-tlmwait $pbkPtrStr$partition_id >= $currWritePtr - 1 ? 300000
+tlmwait $pbkPtrStr$partition_id >= $currWritePtr - 1 ? 180000
 timeout
   echo All packets not downloaded
   echo Press GO if playback is complete
