@@ -16,17 +16,15 @@
 ; 4. QA, Arosish Priyadarshan (IIST)
 ; 5. QC, Unnati (IIST)
 ;
-; OTHER DEPENDENT SCRIPTS:
-; hello_is1
-; Scripts/Commissioning/commission_cdh_tlm_check
-; Scripts/Commissioning/commission_eps_tlm_check
-; Scripts/Commissioning/commission_comm_tlm_check
-; Scripts/Commissioning/commission_adcs_tlm_check
 
 declare cmdCnt dn16l
 declare cmdTry dn16l
 declare cmdSucceed dn16l
 declare seqCnt dn14
+
+set cmdSucceed = 0
+set cmdCnt = 0
+set cmdTry = 0
 
 echo Press GO when ready to start the script
 pause
@@ -52,15 +50,6 @@ set cmdSucceed = cmdSucceed + 1
 echo Verify if the beacon rate has decremented
 pause
 
-set cmdCnt = beacon_cmd_succ_count + 1
-while beacon_cmd_succ_count < $cmdCnt
-	set cmdTry = cmdTry + 1
-	cmd_set_pkt_rate apid SW_STAT rate 5 stream UHF
-	wait 3529
-endwhile
-set cmdSucceed = cmdSucceed + 1
-pause
-
 REDUCE_BEACON_RATE:
 ; Reduce beacon rate to SD card to avoid beacon partition overflow before deployment data download
 echo To reduce beacon rate to SD card press GO
@@ -72,44 +61,6 @@ set cmdCnt = beacon_cmd_succ_count + 1
 while beacon_cmd_succ_count < $cmdCnt
 	set cmdTry = cmdTry + 1
 	cmd_set_pkt_rate apid SW_STAT rate 3 stream SD
-	wait 3529
-endwhile
-set cmdSucceed = cmdSucceed + 1
-
-CHECKOUT:
-; Decided to keep all parameter checks
-; Call cdh_tlm_check
-echo Press GO if you want to perfrom CDH tlm checks.
-echo Else GOTO FINISH
-pause
-call Scripts/Commissioning/commission_cdh_tlm_check
-
-echo Press GO if you want to perfrom EPS tlm checks.
-echo Else GOTO FINISH
-pause
-; Call eps_tlm_check
-call Scripts/Commissioning/commission_eps_tlm_check
-
-echo Press GO if you want to perfrom Comm. tlm checks.
-echo Else GOTO FINISH
-pause
-; Call comm_tlm_check
-call Scripts/Commissioning/commission_comm_tlm_check
-
-echo Press GO if you want to perfrom ADCS tlm checks.
-echo Else GOTO FINISH
-pause
-; Call adcs_tlm_check
-call Scripts/Commissioning/commission_adcs_tlm_check
-
-
-; Finish up aliveness test tasks
-FINISH:
-; Set beacons back to UHF stream with default rate of 30 seconds
-set cmdCnt = beacon_cmd_succ_count + 1
-while beacon_cmd_succ_count < $cmdCnt
-	set cmdTry = cmdTry + 1
-	cmd_set_pkt_rate apid SW_STAT rate 10 stream UHF
 	wait 3529
 endwhile
 set cmdSucceed = cmdSucceed + 1
