@@ -5,12 +5,14 @@
 ; Safe mode: No Payloads, No SBand | Just CDH, EPS, UHF, ADCS, DAXSS (electronics would be on but instrument off)
 ; Outline:
 ;   Decrement the Beacon rate
-; 	Check CDH, EPS, UHF
+;   Check CDH, EPS, UHF, ADCS
+;   
 ;
 ; MANAGEMENT:
 ; 1. Hydra Operator (Commander): Dhruva Anantha Datta (IIST)
-; 2. GNU radio Operator; Murala Aman Naveen (IIST)
-; 3. GS Superviser; Raveendranath Sir (IIST) and Joji Sir (IIST)
+; 2. Hydra QA; Murala Aman Naveen (IIST)
+; 3. GNU Radio Operator; Joji Sir (IIST)
+; 4. GS Superviser; Raveendranath Sir (IIST)
 ; 4. QA, Arosish Priyadarshan (IIST)
 ; 5. QC, Unnati (IIST)
 ;
